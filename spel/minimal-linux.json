@@ -286,6 +286,27 @@
             "virtual_network_name": "{{ user `azure_virtual_network_name` }}",
             "virtual_network_subnet_name": "{{ user `azure_subnet_name` }}",
             "vm_size": "Standard_DS2_v2"
+        },
+        {
+            "client_id": "{{user `azure_client_id`}}",
+            "client_secret": "{{user `azure_client_secret`}}",
+            "cloud_environment_name": "{{ user `azure_environment` }}",
+            "communicator": "ssh",
+            "image_offer": "{{ user `azure_source_image_offer` }}",
+            "image_publisher": "{{ user `azure_source_image_publisher` }}",
+            "image_sku": "{{ user `azure_source_image_sku` }}",
+            "location": "{{ user `azure_location` }}",
+            "managed_image_name": "{{ user `spel_identifier` }}-{{ build_name }}-{{ user `spel_version` }}",
+            "managed_image_resource_group_name": "{{ user `azure_dest_resource_group` }}",
+            "name": "azure-custom-managed-image",
+            "os_disk_size_gb": "30",
+            "os_type": "Linux",
+            "private_virtual_network_with_public_ip": "{{ user `azure_execute_using_public_ip` }}",
+            "subscription_id": "{{user `azure_subscription_id`}}",
+            "type": "azure-arm",
+            "virtual_network_name": "{{ user `azure_virtual_network_name` }}",
+            "virtual_network_subnet_name": "{{ user `azure_subnet_name` }}",
+            "vm_size": "Standard_DS2_v2"
         }
     ],
     "post-processors": [
@@ -495,6 +516,19 @@
             "type": "shell"
         },
         {
+            "environment_vars": [
+                "SPEL_BUILDDEPS=lvm2 parted yum-utils unzip git"
+            ],
+            "execute_command": "{{ .Vars }} sudo -E /bin/sh '{{ .Path }}'",
+            "only": [
+                "azure-custom-managed-image"
+            ],
+            "scripts": [
+                "{{ template_dir }}/scripts/azure-custom-managed-image-builder.sh"
+            ],
+            "type": "shell"
+        },
+        {
             "destination": ".spel/{{ user `spel_version` }}/{{ user `spel_identifier` }}-{{ build_name }}.manifest.txt",
             "direction": "download",
             "source": "/tmp/manifest.txt",
@@ -508,7 +542,8 @@
             ],
             "only": [
                 "minimal-centos-7-azure-vhd",
-                "minimal-centos-7-azure-image"
+                "minimal-centos-7-azure-image",
+                "azure-custom-managed-image"
             ],
             "skip_clean": true,
             "type": "shell"

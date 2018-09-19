@@ -135,9 +135,7 @@ to [Hashicorp Vagrant Cloud][19], which requires a [Vagrant Cloud account][21].
 
 6.  If building a VHD or Image for Azure, ensure you have [authorized access
     to ARM][23]. The creation of destination objects and a Service Principal
-    can either be done [manually][24] or via [script][25]. If not building in
-    Public region, use of device login is not possible and a Service Principal
-    is required.
+    can either be done [manually][24] or via [script][25]. 
 
 ## Usage
 
@@ -306,22 +304,24 @@ packer build \
 
 ## Building for Microsoft Azure
 
-Azure regions may not all support [Azure Managed Disks][26] and in turn
-managed VM images. Packer provides capabilities within the [Azure Resource
+Packer provides capabilities within the [Azure Resource
 Manager Builder][22] for creating either a VHD or Image.
 
-A source VHD URI or source Image Name and Resource Group is required from
-which to start the SPEL Azure build. Available Azure Marketplace CentOS Images
-do not currently contain or execute cloud-init, so a custom VHD or source
-image of your own, configured with cloud-init, is needed.
+A source VHD URI or source VM Image Name and Resource Group is required from
+which to start the SPEL Azure build. Available Azure Marketplace CentOS VM 
+Images do not currently contain or execute cloud-init, so a custom VHD or source
+VM Image of your own, configured with cloud-init, is needed. Alternatively, the 
+azure-custom-managed-image builder can be used to create a custom VM Image 
+configured with cloud-init from a non-LVM based Azure Marketplace CentOS VM 
+Image.
 
-The resultant SPEL VHD or Image will be configured to use the Azure Linux
+The resultant SPEL VHD or VM Image will be configured to use the Azure Linux
 agent, [WALinuxAgent][27] per recommended [configurations][28]. Currently, the
 use of cloud-init exclusively does not enable execution/installation of [Azure
 VM Extensions][30]. The below variables also disable FIPS mode in the
-resultant SPEL VHD or Image. Currently the Azure Linux agent [does not support
-FIPS mode][29] when utilizing Azure VM Extensions. If no plans exist to
-utilize Azure VM Extensions on VMs provisioned from SPEL VHDs or Images, FIPS
+resultant SPEL VHD or VM Image. Currently the Azure Linux agent [does not 
+support FIPS mode][29] when utilizing Azure VM Extensions. If no plans exist to 
+utilize Azure VM Extensions on VMs provisioned from SPEL VHDs or VM Images, FIPS
 mode can be enabled, but the `waagent` configuration must also be modified
 accordingly.
 
