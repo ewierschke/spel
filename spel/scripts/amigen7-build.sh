@@ -142,14 +142,17 @@ echo "Cloning source of the AMIGen project"
 git clone --branch "${AMIGENBRANCH}" "${AMIGENSOURCE}" "${ELBUILD}"
 chmod +x "${ELBUILD}"/*.sh
 
-echo "Cloning source of the AMI utils project"
-git clone "${AMIUTILSSOURCE}" "${AMIUTILS}" --depth 1
-
-for RPM in "${AMIUTILS}"/*.el7.noarch.rpm
-do
-    echo "Creating link for ${RPM} in ${ELBUILD}/AWSpkgs/"
-    ln "${RPM}" "${ELBUILD}"/AWSpkgs/
-done
+if [[ "${CLOUDPROVIDER}" == "aws" ]]
+then
+    echo "Cloning source of the AMI utils project"
+    git clone "${AMIUTILSSOURCE}" "${AMIUTILS}" --depth 1
+    
+    for RPM in "${AMIUTILS}"/*.el7.noarch.rpm
+    do
+        echo "Creating link for ${RPM} in ${ELBUILD}/AWSpkgs/"
+        ln "${RPM}" "${ELBUILD}"/AWSpkgs/
+    done
+fi
 
 echo "Executing DiskSetup.sh"
 bash -x "${ELBUILD}"/DiskSetup.sh -b "${BOOTLABEL}" -v "${VGNAME}" -d "${DEVNODE}"
