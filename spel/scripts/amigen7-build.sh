@@ -32,14 +32,30 @@ DEFAULTREPOS=(
 )
 if [[ $(rpm --quiet -q redhat-release-server)$? -eq 0 ]]
 then
-    DEFAULTREPOS=(
-        rhui-REGION-client-config-server-7
-        rhui-REGION-rhel-server-releases
-        rhui-REGION-rhel-server-rh-common
-        rhui-REGION-rhel-server-optional
-        rhui-REGION-rhel-server-extras
-        epel
-    )
+    if [[ "${CLOUDPROVIDER}" == "aws" ]]
+    then
+        DEFAULTREPOS=(
+            rhui-REGION-client-config-server-7
+            rhui-REGION-rhel-server-releases
+            rhui-REGION-rhel-server-rh-common
+            rhui-REGION-rhel-server-optional
+            rhui-REGION-rhel-server-extras
+            epel
+        )
+    fi
+    if [[ "${CLOUDPROVIDER}" == "azure" ]]
+    then
+        DEFAULTREPOS=(
+            rhui-rhel-7-server-dotnet-rhui
+            rhui-rhel-7-server-rhui
+            rhui-rhel-7-server-extras
+            rhui-rhel-7-server-optional
+            rhui-rhel-7-server-rh-common
+            rhui-rhel-7-server-supplementary
+            rhui-rhel-server-rhui-rhscl-7
+            rhui-microsoft-azure-rhel7
+        )
+    fi
 fi
 
 export CHROOT
