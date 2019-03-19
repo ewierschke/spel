@@ -237,6 +237,7 @@
             "vpc_id": "{{ user `vpc_id` }}"
         },
         {
+            "async_resourcegroup_delete": true,
             "capture_container_name": "images",
             "capture_name_prefix": "{{ user `spel_identifier` }}-{{ user `spel_version` }}",
             "client_id": "{{user `azure_client_id`}}",
@@ -263,6 +264,7 @@
             "vm_size": "Standard_DS2_v2"
         },
         {
+            "async_resourcegroup_delete": true,
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
@@ -288,6 +290,7 @@
             "vm_size": "Standard_DS2_v2"
         },
         {
+            "async_resourcegroup_delete": true,
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
@@ -310,9 +313,10 @@
             "type": "azure-arm",
             "virtual_network_name": "{{ user `azure_virtual_network_name` }}",
             "virtual_network_subnet_name": "{{ user `azure_subnet_name` }}",
-            "vm_size": "Standard_DS2_v2"
+            "vm_size": "Standard_DS3_v2"
         },
         {
+            "async_resourcegroup_delete": true,
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
