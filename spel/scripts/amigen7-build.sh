@@ -46,14 +46,11 @@ then
     if [[ "${CLOUDPROVIDER}" == "azure" ]]
     then
         DEFAULTREPOS=(
-            rhui-rhel-7-server-dotnet-rhui
-            rhui-rhel-7-server-rhui
-            rhui-rhel-7-server-extras
-            rhui-rhel-7-server-optional
-            rhui-rhel-7-server-rh-common
-            rhui-rhel-7-server-supplementary
-            rhui-rhel-server-rhui-rhscl-7
             rhui-microsoft-azure-rhel7
+            rhui-rhel-7-server-rhui-rpms
+            rhui-rhel-7-server-rhui-rh-common-rpms
+            rhui-rhel-7-server-rhui-optional-rpms
+            rhui-rhel-7-server-rhui-extras-rpms
         )
     fi
 fi
