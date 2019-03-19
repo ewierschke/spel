@@ -274,7 +274,7 @@
             "managed_image_name": "{{ user `spel_identifier` }}-{{ build_name }}-{{ user `spel_version` }}",
             "managed_image_resource_group_name": "{{ user `azure_dest_resource_group` }}",
             "name": "minimal-centos-7-azure-image",
-            "os_disk_size_gb": "20",
+            "os_disk_size_gb": "32",
             "os_type": "Linux",
             "private_virtual_network_with_public_ip": "{{ user `azure_execute_using_public_ip` }}",
             "ssh_port": 122,
