@@ -237,6 +237,7 @@
             "vpc_id": "{{ user `vpc_id` }}"
         },
         {
+            "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",
             "capture_container_name": "images",
             "capture_name_prefix": "{{ user `spel_identifier` }}-{{ user `spel_version` }}",
             "client_id": "{{user `azure_client_id`}}",
@@ -263,6 +264,7 @@
             "vm_size": "Standard_DS2_v2"
         },
         {
+            "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
@@ -288,6 +290,7 @@
             "vm_size": "Standard_DS2_v2"
         },
         {
+            "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
@@ -313,6 +316,7 @@
             "vm_size": "Standard_DS3_v2"
         },
         {
+            "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
@@ -584,6 +588,7 @@
         "ami_regions": "",
         "ami_users": "",
         "aws_region": "us-east-1",
+        "azure_build_resource_group_name": "",
         "azure_client_id": "{{env `ARM_CLIENT_ID`}}",
         "azure_client_secret": "{{env `ARM_CLIENT_SECRET`}}",
         "azure_dest_resource_group": "",
