@@ -1,5 +1,118 @@
 ## Changelog
 
+### 2019.02.1
+
+**Released**: 2019.02.19
+
+**Commit Delta**: [Change from 2019.01.1 release](https://github.com/plus3it/spel/compare/2019.01.1...2019.02.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2019.02.1/manifests>
+
+**Summary**:
+
+*   "Extra" package updates
+    -   aws-cli/1.16.107
+    -   amazon-ssm-agent-2.3.444.0-1
+    -   python36-libs-3.6.6-2.el7.x86_64
+    -   python36-3.6.6-2.el7.x86_64
+
+### 2019.01.1
+
+**Released**: 2019.01.16
+
+**Commit Delta**: [Change from 2018.12.1 release](https://github.com/plus3it/spel/compare/2018.12.1...2019.01.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2019.01.1/manifests>
+
+**Summary**:
+
+*   "Extra" package updates
+    -   aws-cli/1.16.89
+    -   amazon-ssm-agent-2.3.372.0-1
+
+### 2018.12.1
+
+**Released**: 2018.12.11
+
+**Commit Delta**: [Change from 2018.11.2 release](https://github.com/plus3it/spel/compare/2018.11.2...2018.12.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2018.12.1/manifests>
+
+**Summary**:
+
+*   Minor Release
+    -   CentOS Linux Release 7.6
+
+*   "Extra" package updates
+    -   aws-cli/1.16.72
+    -   amazon-ssm-agent-2.3.274
+
+### 2018.11.2
+
+**Released**: 2018.11.14
+
+**Commit Delta**: [Change from 2018.11.1 release](https://github.com/plus3it/spel/compare/2018.11.1...2018.11.2)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2018.11.2/manifests>
+
+**Summary**:
+
+*   Ensures that the symlink `/usr/bin/python3` exists
+
+*   "Extra" package updates
+    -   aws-cli/1.16.54
+
+### 2018.11.1
+
+**Released**: 2018.11.13
+
+**Commit Delta**: [Change from 2018.10.1 release](https://github.com/plus3it/spel/compare/2018.10.1...2018.11.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2018.11.1/manifests>
+
+**Summary**:
+
+*   Python 3.6 has replaced Python 3.4
+*   Builders for EL6 images have been deprecated
+
+*   Minor Release
+    -   RedHat 7 Images are now RedHat 7.6
+
+*   "Extra" package updates
+    -   aws-cli/1.16.53
+    -   amazon-ssm-agent-2.3.235.0-1
+    -   python36-3.6.6-1.el7.x86_64
+
+### 2018.10.1
+
+**Released**: 2018.10.16
+
+**Commit Delta**: [Change from 2018.09.1 release](https://github.com/plus3it/spel/compare/2018.09.1...2018.10.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2018.10.1/manifests>
+
+**Summary**:
+
+*   "Extra" package updates
+    -   aws-cli/1.16.34
+    -   amazon-ssm-agent-2.3.136.0-1
+    -   aws-cfn-bootstrap-1.4-30
+
+### 2018.09.1
+
+**Released**: 2018.09.18
+
+**Commit Delta**: [Change from 2018.08.1 release](https://github.com/plus3it/spel/compare/2018.08.1...2018.09.1)
+
+**Manifests**: <https://github.com/plus3it/spel/blob/2018.09.1/manifests>
+
+**Summary**:
+
+*   "Extra" package updates
+    -   aws-cli/1.16.15
+    -   amazon-ssm-agent-2.3.68.0-1
+    -   (EL7) python34-3.4.9-1
+
 ### 2018.08.1
 
 **Released**: 2018.08.16
