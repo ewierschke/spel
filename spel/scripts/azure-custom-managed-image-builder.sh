@@ -63,6 +63,7 @@ yum -y install "${BUILDDEPS[@]}"
 
 #install cloud-init
 yum -y install cloud-init
+yum -y update
 
 #configure /etc/cloud/cloud.cfg
     /usr/bin/sed -i \
