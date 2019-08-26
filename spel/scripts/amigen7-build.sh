@@ -49,8 +49,13 @@ then
     CUSTOMREPONAME=$(IFS=,; echo "${DEFAULTREPOS[*]}")
 fi
 
-export CHROOT
-export FIPSDISABLE
+MKFSFORCEOPT="-F"
+if [[ "$BUILDNAME" =~ "xfs" ]]
+then
+    MKFSFORCEOPT="-f"
+fi
+
+export CHROOT FIPSDISABLE MKFSFORCEOPT
 
 retry()
 {
@@ -181,7 +186,7 @@ then
 fi
 
 echo "Executing DiskSetup.sh"
-bash -eux -o pipefail "${ELBUILD}"/DiskSetup.sh -b "${BOOTLABEL}" -v "${VGNAME}" -d "${DEVNODE}" -f ext4
+bash -eux -o pipefail "${ELBUILD}"/DiskSetup.sh -b "${BOOTLABEL}" -v "${VGNAME}" -d "${DEVNODE}"
 
 echo "Executing MkChrootTree.sh"
 bash -eux -o pipefail "${ELBUILD}"/MkChrootTree.sh "${DEVNODE}"
