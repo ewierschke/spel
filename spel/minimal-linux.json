@@ -164,7 +164,7 @@
             "type": "azure-arm",
             "virtual_network_name": "{{ user `azure_virtual_network_name` }}",
             "virtual_network_subnet_name": "{{ user `azure_subnet_name` }}",
-            "vm_size": "Standard_DS3_v2"
+            "vm_size": "Standard_DS4_v2"
         },
         {
             "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",

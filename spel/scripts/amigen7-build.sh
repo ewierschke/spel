@@ -36,14 +36,28 @@ DEFAULTREPOS=(
 )
 if [[ $(rpm --quiet -q redhat-release-server)$? -eq 0 ]]
 then
-    DEFAULTREPOS=(
-        rhui-REGION-client-config-server-7
-        rhui-REGION-rhel-server-releases
-        rhui-REGION-rhel-server-rh-common
-        rhui-REGION-rhel-server-optional
-        rhui-REGION-rhel-server-extras
-        epel
-    )
+    if [[ "${CLOUDPROVIDER}" == "aws" ]]
+    then
+        DEFAULTREPOS=(
+            rhui-REGION-client-config-server-7
+            rhui-REGION-rhel-server-releases
+            rhui-REGION-rhel-server-rh-common
+            rhui-REGION-rhel-server-optional
+            rhui-REGION-rhel-server-extras
+            epel
+        )
+    elif [[ "${CLOUDPROVIDER}" == "azure" ]]
+    then
+        DEFAULTREPOS=(
+            rhui-rhel-7-server-rhui-rpms
+            rhui-rhel-7-server-rhui-rh-common-rpms
+            rhui-rhel-7-server-rhui-optional-rpms
+            rhui-rhel-7-server-rhui-extras-rpms
+            rhui-microsoft-azure-rhel7
+        )
+    else
+        echo "undefined cloud provider"
+    fi
 fi
 
 if [[ -z "${CUSTOMREPONAME}" ]]
@@ -203,11 +217,21 @@ then
     CLIOPT_EXTRARPMS=(-e "${EXTRARPMS}")
 fi
 
+#Unset variable if empty quotes passed to script for Customreporpm
+quotes=\"\"
+if [[ "${CUSTOMREPORPM}" == "${quotes}" ]]
+then 
+    unset CUSTOMREPORPM
+fi
+
 # Construct the cli option string for a custom repo
 CLIOPT_CUSTOMREPO=""
 if [[ -n "${CUSTOMREPORPM}" && -n "${CUSTOMREPONAME}" ]]
 then
     CLIOPT_CUSTOMREPO=(-r "${CUSTOMREPORPM}" -b "${CUSTOMREPONAME}")
+elif [[ -n "${CUSTOMREPONAME}" ]]
+then
+    CLIOPT_CUSTOMREPO=(-b "${CUSTOMREPONAME}")
 fi
 
 echo "Executing ChrootBuild.sh"
