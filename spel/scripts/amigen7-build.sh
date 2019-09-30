@@ -155,6 +155,13 @@ echo "Installing build-host dependencies"
 yum -y install "${BUILDDEPS[@]}"
 rpm -q "${BUILDDEPS[@]}"
 
+#Unset variable if empty quotes passed to script for Customreporpm
+quotes=\"\"
+if [[ "${CUSTOMREPORPM}" == "${quotes}" ]]
+then 
+    unset CUSTOMREPORPM
+fi
+
 echo "Installing custom repo packages in the builder box"
 IFS="," read -r -a BUILDER_CUSTOMREPORPM <<< "$CUSTOMREPORPM"
 for RPM in "${BUILDER_CUSTOMREPORPM[@]}"
@@ -186,6 +193,7 @@ then
 fi
 
 echo "Cloning source of the AMIGen project"
+# add -c http.sslVerify=false between git and clone if cert not in public chain 
 git clone --branch "${AMIGENBRANCH}" "${AMIGENSOURCE}" "${ELBUILD}"
 chmod +x "${ELBUILD}"/*.sh
 
@@ -202,6 +210,14 @@ then
 fi
 
 echo "Executing DiskSetup.sh"
+if [[ "${CLOUDPROVIDER}" == "azure" ]]
+then
+    #increasing partition for var as it hosts Azure VM extensions
+    /usr/bin/sed -i \
+        -e 's|local VARVOL=(varVol 2g)|local VARVOL=(varVol 4g)|' \
+        "${ELBUILD}"/DiskSetup.sh
+    ##end adding Azure grub defaults
+fi
 bash -eux -o pipefail "${ELBUILD}"/DiskSetup.sh -b "${BOOTLABEL}" -v "${VGNAME}" -d "${DEVNODE}"
 
 echo "Executing MkChrootTree.sh"
@@ -215,13 +231,6 @@ CLIOPT_EXTRARPMS=""
 if [[ -n "${EXTRARPMS}" ]]
 then
     CLIOPT_EXTRARPMS=(-e "${EXTRARPMS}")
-fi
-
-#Unset variable if empty quotes passed to script for Customreporpm
-quotes=\"\"
-if [[ "${CUSTOMREPORPM}" == "${quotes}" ]]
-then 
-    unset CUSTOMREPORPM
 fi
 
 # Construct the cli option string for a custom repo
