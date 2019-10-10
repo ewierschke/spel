@@ -116,6 +116,7 @@
             "vm_size": "Standard_DS3_v2"
         },
         {
+            "build_resource_group_name": "{{user `azure_build_resource_group_name`}}",
             "client_id": "{{user `azure_client_id`}}",
             "client_secret": "{{user `azure_client_secret`}}",
             "cloud_environment_name": "{{ user `azure_environment` }}",
