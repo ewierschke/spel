@@ -213,10 +213,10 @@ echo "Executing DiskSetup.sh"
 if [[ "${CLOUDPROVIDER}" == "azure" ]]
 then
     #increasing partition for var as it hosts Azure VM extensions
-    #increasing partition for root for other agents default install
+    #increasing partition for root for app agents install paths
     /usr/bin/sed -i \
         -e 's|local VARVOL=(varVol 2g)|local VARVOL=(varVol 4g)|' \
-        -e 's|local ROOTVOL=(varVol 4g)|local ROOTVOL=(varVol 6g)|' \
+        -e 's|local ROOTVOL=(rootVol 4g)|local ROOTVOL=(rootVol 6g)|' \
         "${ELBUILD}"/DiskSetup.sh
     ##end adding Azure grub defaults
 fi
