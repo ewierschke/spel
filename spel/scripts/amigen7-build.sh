@@ -218,7 +218,7 @@ then
         -e 's|local VARVOL=(varVol 2g)|local VARVOL=(varVol 4g)|' \
         -e 's|local ROOTVOL=(rootVol 4g)|local ROOTVOL=(rootVol 6g)|' \
         "${ELBUILD}"/DiskSetup.sh
-    ##end adding Azure grub defaults
+    ##end Azure partition increases
 fi
 bash -eux -o pipefail "${ELBUILD}"/DiskSetup.sh -b "${BOOTLABEL}" -v "${VGNAME}" -d "${DEVNODE}"
 
